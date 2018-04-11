@@ -636,22 +636,8 @@ static NSDictionary *defaultFaceDetectorOptions = nil;
 
 - (void)orientationChanged:(NSNotification *)notification
 {
-    [super orientationChanged];
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:
-            [_videoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            [_videoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationPortraitUpsideDown];
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            [_videoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            [_videoPreviewLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
-            break;
-    }
+    [self changePreviewOrientation:orientation];
 }
 
 - (void)changePreviewOrientation:(UIInterfaceOrientation)orientation
